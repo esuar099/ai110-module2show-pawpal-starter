@@ -5,7 +5,27 @@
 **a. Initial design**
 
 - Briefly describe your initial UML design.
+
+Pet owner should be able to add pets, add pet care tasks, and prduce a daily plan of tasks.
+
 - What classes did you include, and what responsibilities did you assign to each?
+
+Class: Owner
+Attributes: Owner Name, Date of Birth, Age, Availability, Preferences
+Methods: Modify owner
+
+Class: Pet
+Attributes: Pet Name, Date of Birth, Age, Species, Breed
+Methods: Add pet, modify pet, remove pet
+
+Class: Task
+Attributes: Task Name, Owner Name, Pet Name, Priority, Scheduled Date, Scheduled Start Time, Scheduled End Time, Duration
+Methods: Add task, modify task, remove task
+
+Class: Plan
+Attributes: Date, List of Tasks
+Methods: View plan, modify plan, remove plan
+
 
 **b. Design changes**
 
