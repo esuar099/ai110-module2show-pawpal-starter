@@ -6,31 +6,41 @@
 
 - Briefly describe your initial UML design.
 
-Pet owner should be able to add pets, add pet care tasks, and prduce a daily plan of tasks.
+ANSWER: Pet owner should be able to add pets, add pet care tasks, and prduce a daily plan of tasks.
 
 - What classes did you include, and what responsibilities did you assign to each?
 
+ANSWER: 
 Class: Owner
 Attributes: Owner Name, Date of Birth, Age, Availability, Preferences
-Methods: Modify owner
+Methods: Modify Owner
+Responsibility: Stores owner details, including availability, contraints, and preferences.
 
 Class: Pet
 Attributes: Pet Name, Date of Birth, Age, Species, Breed
 Methods: Add pet, modify pet, remove pet
+Responsibility: Stores pet details; it also lets you modify or remove any pets.
 
 Class: Task
 Attributes: Task Name, Owner Name, Pet Name, Priority, Scheduled Date, Scheduled Start Time, Scheduled End Time, Duration
 Methods: Add task, modify task, remove task
+Responsibility: Stores task details, including priority and duration
 
 Class: Plan
 Attributes: Date, List of Tasks
 Methods: View plan, modify plan, remove plan
+Responsibility: Generates a plan based on tasks scheduled for a particular day.
 
 
 **b. Design changes**
 
 - Did your design change during implementation?
+
+ANSWER: Yes
+
 - If yes, describe at least one change and why you made it.
+
+ANSWER: Added connections properly between Owner and Pet, Task, Plan. It wasn't explicitly mentioned that Owner could own Pet(s), Task(s), and Plan(s). Also, added an ID to Owner, Pet, Task, and Plan, for easy connection amongst them.
 
 ---
 
