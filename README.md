@@ -41,3 +41,31 @@ pip install -r requirements.txt
 5. Add tests to verify key behaviors.
 6. Connect your logic to the Streamlit UI in `app.py`.
 7. Refine UML so it matches what you actually built.
+
+## Smarter Scheduling
+### Core data
+- Tied to a specific date and owner_id
+- Holds a list of Task objects and a parallel list of explanations (reasoning for each scheduling decision)
+
+### Viewing & Sorting
+- view_plan() — returns tasks sorted chronologically; unscheduled tasks appended at the end
+- sort_by_time(tasks?) — same sort logic, optionally on an external task list
+
+### Plan Management
+- add_task(task, reason) — validates no conflict before adding; logs reason or exclusion explanation
+- remove_task(task_id) — removes task and its explanation entry
+- modify_plan(tasks) — replaces all tasks if the new list is conflict-free
+- remove_plan() — clears all tasks and explanations
+
+### Conflict Detection
+- validate_schedule(new_task?) — returns bool; blocks additions that would create overlaps
+- detect_conflicts() — returns all overlapping task pairs using interval-overlap math (O(n²))
+- get_conflict_warnings() — human-readable strings classifying conflicts as same-pet or cross-pet
+
+### Explanations
+- get_explanations() — returns the log of why each task was included or excluded
+
+### Auto-generated via PawPalSystem.create_plan()
+- Greedy priority algorithm: tasks sorted by effective priority (base + preference boost)
+- Slots tasks sequentially within the owner's availability window (HH:MM-HH:MM)
+- Excludes tasks that don't fit the remaining window, with an explanation recorded

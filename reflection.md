@@ -49,12 +49,22 @@ ANSWER: Added connections properly between Owner and Pet, Task, Plan. It wasn't 
 **a. Constraints and priorities**
 
 - What constraints does your scheduler consider (for example: time, priority, preferences)?
+
+ANSWER: It considers owner's available time, task's duration, and task's priority
+
 - How did you decide which constraints mattered most?
+
+ANSWER: The problem was not clear with what user preferences really meant, leading to ambiguousness. I believe the user's available time and the priorities and durations of a set of task mattered the most when scheduling these tasks. Scheduling is all about time management, so I'd need constraints in relation to times (like availability and durations) and priority to create a simple and straightforward plan.
 
 **b. Tradeoffs**
 
 - Describe one tradeoff your scheduler makes.
+
+ANSWER: As I tested the scheduler, I added a task called "Evening bath", high priority, and duration of 30 minutes. However, the scheduler determined to have it scheduled at 9:00 AM since it was the only task I set as high priority. It doesn't make sense to have an evening bath in the morning.
+
 - Why is that tradeoff reasonable for this scenario?
+
+ANSWER: The scheduler's primary purpose is to take an array of tasks with priorities and durations. Based on the scheduler's logic, it will schedule tasks based upon priority. Because the task was flagged as High priority, the scheduler did its job as codified. The scheduler's logic can be expanded and tailored further as more and more user cases like these emerge.
 
 ---
 
