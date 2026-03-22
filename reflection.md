@@ -87,13 +87,22 @@ ANSWER: The scheduler's primary purpose is to take an array of tasks with priori
 **a. What you tested**
 
 - What behaviors did you test?
+
+ANSWER: Jus tto name a few, I tested for any number of tasks inserted out of order are always returned chronologically, when completing a daily or weekly task, it creates a new one of the next corresponding cycle, and make sure the app could detect conflicts when scheduling tasks for same- and cross-pets.
+
 - Why were these tests important?
+
+ANSWER: I believe these tests are important because these allow for the app to properly work. The most important feature is the scheduler, and if the logic is broken, then the app woulnd't be doing what it was intended to do. 
 
 **b. Confidence**
 
 - How confident are you that your scheduler works correctly?
+
+ANSWER: 5 stars (out of 5 stars)
+
 - What edge cases would you test next if you had more time?
 
+ANSWER: The current tests don't cover what happens when create_plan() is called on a day where no tasks exist. It should return either an empty Scheduler, not crash. Perhaps, explore if all possible test cases are covered and validated. 
 ---
 
 ## 5. Reflection
@@ -102,10 +111,16 @@ ANSWER: The scheduler's primary purpose is to take an array of tasks with priori
 
 - What part of this project are you most satisfied with?
 
+ANSWER: I would say, the conflict detection system. It uses the standard interval-overlap formula where start1 < end2 AND end1 > start2. Then, builds on it to classify each pair as same-pet or cross-pet with a plain-English message. It's simple, easy to read and test.
+
 **b. What you would improve**
 
 - If you had another iteration, what would you improve or redesign?
 
+ANSWER: Going back to questions under 2b, the scheduler is greedy where it schedules purely based on priority. If I had more time, I would take a look into how tasks like "evening bath" or "morning walk" are scheduled at a reasonable time, maybe using natural language processing to detect if any chronological and time references are in the task name (e.g., "morning", "afternoon", "evening") and specify time windows (e.g., "morning" window can be 6:00 a.m. through 11:59 a.m.).
+
 **c. Key takeaway**
 
 - What is one important thing you learned about designing systems or working with AI on this project?
+
+ANSWER: AI is a powerful tool to be honest. It can reduce so much work to a programmer, especially when documenting features in README files. This project was extensive and taught me many things from basic Streamlit to Pytests. I would say, most important thing was Pytest, it can help build test cases and simply run them to validate the app runs as expected after any number of changes.
