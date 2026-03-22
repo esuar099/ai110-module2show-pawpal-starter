@@ -69,3 +69,23 @@ pip install -r requirements.txt
 - Greedy priority algorithm: tasks sorted by effective priority (base + preference boost)
 - Slots tasks sequentially within the owner's availability window (HH:MM-HH:MM)
 - Excludes tasks that don't fit the remaining window, with an explanation recorded
+
+## Testing PawPal+
+
+Run the full test suite from the project root:
+
+```bash
+python -m pytest tests/test_pawpal.py -v
+```
+
+The tests cover four areas of the scheduling system:
+
+**Sorting correctness** — verifies that tasks are always returned in chronological order regardless of insertion order, including tasks from multiple pets interleaved by time and unscheduled tasks appended last.
+
+**Recurrence logic** — confirms that completing a `daily` task creates exactly one new task for the following day, that the next occurrence starts as pending, and that month/year boundary rollovers (e.g. Jan 31 → Feb 1) are handled correctly. Also verifies that `once` tasks produce no follow-up.
+
+**Conflict detection** — verifies that the `Scheduler` flags overlapping tasks including exact duplicate start times, partial overlaps, and three-way overlaps, while correctly leaving sequential tasks (touching endpoints) clear. Checks that warning messages are labelled `same-pet` or `cross-pet` as appropriate.
+
+**Filtering** — verifies that tasks can be filtered by pet name (case-insensitive), completion status, or both combined, and that the system returns an empty list for unknown pet names rather than raising an error.
+
+Confidence Level (1-5 stars): 5 stars
